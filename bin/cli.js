@@ -8,16 +8,17 @@ const traverseDOMBFS = window => {
 
     const { document } = window;
     const queue = [];
-    // const colorSequence = [];
     queue.push(document.querySelector('body'));
 
     while (queue.length) {
         const node = queue.shift();
         try {
-            const color = window.getComputedStyle(node).color;
+            const color = window.getComputedStyle(node).backgroundColor;
             process.stdout.write(rgba2hex(color) + ', ')
-            // colorSequence.push(color);
-        } catch (e) {}
+            
+        } catch (e) {
+            process.stdout.write(', ')
+        }
 
         for (let i = 0; i < node.children.length; i++) {
             queue.push(node.children[i]);
